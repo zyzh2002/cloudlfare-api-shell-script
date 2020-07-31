@@ -27,7 +27,7 @@ zoneid=$(
 echo "Your cloudflare DNS zone id is $zoneid . "
 
 dnsidenty=$(
-     curl  -s -X GET "https://api.cloudflare.com/client/v4/zones/$zoneid/dns_records?name=$RECORD_NAME" \
+     curl  -s -X GET "https://api.cloudflare.com/client/v4/zones/$zoneid/dns_records?type=$RECORD_TYPE&name=$RECORD_NAME" \
      -H "X-Auth-Email: $EMAIL" \
      -H "X-Auth-Key: $AUTH_KEY" \
      -H "Content-Type: application/json" | grep -Po '(?<="id":")[^"]*'
