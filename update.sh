@@ -52,4 +52,5 @@ else
           -H "Content-Type: application/json" \
           --data '{"type":"'${RECORD_TYPE}'","name":"'${RECORD_NAME}'","content":"'${ip}'","ttl":'${TTL}',"proxied":false}'
      echo  -e "\n Address updated."
+
 fi
