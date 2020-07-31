@@ -50,6 +50,6 @@ else
           -H "X-Auth-Email: $EMAIL" \
           -H "X-Auth-Key: $AUTH_KEY" \
           -H "Content-Type: application/json" \
-          --data '{"type":"'${RECOED_TYPE}'","name":"'${RECORD_NAME}'","content":"'${ip}'","ttl":'${TTL}',"proxied":false}'
+          --data '{"type":"'${RECORD_TYPE}'","name":"'${RECORD_NAME}'","content":"'${ip}'","ttl":'${TTL}',"proxied":false}'
      echo  -e "Address updated."
 fi
