@@ -4,11 +4,11 @@ ZONE_NAME='example.com'
 #Enter your DNS zone name there.
 EMAIL='someone@example.com'
 #Your auth email.
-RECORD_NAME='name.example.com'
+RECORD_NAME='record.example.com'
 #Enter your FULL DNS record name there.
-RECOED_TYPE='AAAA'
+RECORD_TYPE='record'
 #Record name.
-AUTH_KEY='xxxxx'
+AUTH_KEY='xxxxxxxxxxxxxxxxxxxxxxxxx'
 #Auth key there. This can be found in your account settings.
 TTL=1
 #TTL value dor your record. Type "1" for auto.
@@ -35,16 +35,16 @@ dnsidenty=$(
 echo "The cloudflare DNS record identy is $dnsidenty ."
 
 dnsrecord=$(
-curl  -s -X GET "https://api.cloudflare.com/client/v4/zones/$zoneid/dns_records?name=$RECORD_NAME" \
+     curl -s  -X GET "https://api.cloudflare.com/client/v4/zones/$zoneid/dns_records?type=$RECORD_TYPE&name=$RECORD_NAME" \
      -H "X-Auth-Email: $EMAIL" \
      -H "X-Auth-Key: $AUTH_KEY" \
      -H "Content-Type: application/json" |  grep -Po '(?<="content":")[^"]*'
 )
 echo  "The DNS record on the server is $dnsrecord ."
 
-if [ "$ip" == "$dnsrecord" ] ; then 
+if [ "$ip" == "$dnsrecord" ] ; then
      echo "Address Unchanged."
-else 
+else
      #Here we are ready to update your DNS record below.
      curl  -s -X PUT "https://api.cloudflare.com/client/v4/zones/$zoneid/dns_records/$dnsidenty" \
           -H "X-Auth-Email: $EMAIL" \
